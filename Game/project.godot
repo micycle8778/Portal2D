@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Portal2D"
 run/main_scene="res://World0.tscn"
+config/icon="res://icon.png"
 
 [display]
 
