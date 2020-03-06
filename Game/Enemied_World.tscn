@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemy_World.gd" type="Script" id=1]
+[ext_resource path="res://Empty_World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scanner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy_Bullet.tscn" type="PackedScene" id=4]
+
+[node name="World" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+Scanner = ExtResource( 3 )
+Enemy_Bullet = ExtResource( 4 )

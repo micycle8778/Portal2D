@@ -1,17 +1,27 @@
 extends KinematicBody2D
 
 signal shoot(direction, exit_position, type)
+signal player_dead
 
 const UP = Vector2(0, -1)
 const GRAVITY = 20
 const ACCELERATION = 50
 const MAX_SPEED = 235
 const JUMP_HEIGHT = 450
+const type = 'player'
 
 export(float) var shoot_time = 1
+export(int) var health = 70
 
 var motion = Vector2()
 var can_shoot = [true,true]
+
+func _ready():
+	get_parent().connect('hurt_player', self, '_on_hurt_player')
+
+func _on_hurt_player(dmg):
+	health -= dmg
+	if health <= 0: emit_signal('player_dead')
 
 func _input(event):
 	if Input.is_action_just_pressed('fire0') and can_shoot[0]:

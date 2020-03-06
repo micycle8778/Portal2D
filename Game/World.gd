@@ -4,10 +4,15 @@ const offset = Vector2(32,0)
 
 export(PackedScene) var Bullet
 export(PackedScene) var Portal
-export(float) var bullet_speed
-export(float) var teleport_delay = .35
+export(float) var bullet_speed = 50
+export(float) var teleport_delay = .5
 
 var can_teleport = true
+var type = 'peaceful'
+
+
+func restart():
+	get_tree().change_scene(filename)
 
 func adjecent_tile(vert, map, pos):
 	var add
