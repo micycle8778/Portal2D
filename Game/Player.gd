@@ -4,7 +4,6 @@ signal shoot(direction, exit_position, type)
 signal player_dead
 
 const UP = Vector2(0, -1)
-const GRAVITY = 20
 const ACCELERATION = 50
 const MAX_SPEED = 235
 const JUMP_HEIGHT = 450
@@ -12,6 +11,7 @@ const type = 'player'
 
 export(float) var shoot_time = 1
 export(int) var health = 70
+export(int) var GRAVITY = 20
 
 var motion = Vector2()
 var can_shoot = [true,true]

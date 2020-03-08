@@ -13,6 +13,8 @@ export(int) var enemy_bullet_damage = 10
 var enemies = []
 
 func _ready():
+	._ready()
+	
 	type = 'hostile'
 	for node in get_children():
 		if not node.get_class() == 'RigidBody2D': continue

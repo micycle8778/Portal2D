@@ -7,9 +7,37 @@ export(PackedScene) var Portal
 export(float) var bullet_speed = 50
 export(float) var teleport_delay = .5
 
+export(Vector2) var camera_offset
+export(Vector2) var camera_zoom = Vector2(1,1)
+
 var can_teleport = true
 var type = 'peaceful'
 
+func player_is_within_unit(pos):
+	#Is the player above or below the pos?
+	var above = $Player.position.y > pos.y
+	#Is the player left of right of the pos?
+	var right = $Player.position.x > pos.x
+	
+	var setups = {
+		true: {
+			true: null,
+			false: null,
+		},
+		false: {
+			true: null,
+			false: null,
+		}
+	}
+	
+	return setups[above][right]
+
+func _ready():
+	$'Player/Camera2D'.offset = camera_offset
+	$'Player/Camera2D'.zoom = camera_zoom
+	for node in get_children():
+		if node.get_class() == 'Area2D' and node.type == 'killzone':
+			node.connect('kill_player', self, 'restart')
 
 func restart():
 	get_tree().change_scene(filename)
@@ -45,13 +73,22 @@ func _on_Player_shoot(direction, exit_position, type):
 	add_child(bullet)
 
 func _on_PortalBullet_make_portal(position, type, side):
-	#print('hello')
+	var preserved = side
 	var positions = {
-		-90:[Vector2(-32,0),Vector2(0,0),Vector2(32,0)],
+		-90:[Vector2(-32,0),Vector2(0,0),Vector2(32,0)], 270:[Vector2(-32,0),Vector2(0,0),Vector2(32,0)],
 		90:[Vector2(-32,0),Vector2(0,0),Vector2(32,0)],
-		0:[Vector2(0,-32),Vector2(0,0),Vector2(0,32)],
+		0:[Vector2(0,-32),Vector2(0,0),Vector2(0,32)], 360:[Vector2(0,-32),Vector2(0,0),Vector2(0,32)],
 		180:[Vector2(0,-32),Vector2(0,0),Vector2(0,32)]
 	}
+	
+	#If player is less than 32 pixels vertically or horizonally from the portal
+	if abs($Player.position.x - position.x) < 32 or abs($Player.position.y - position.y) < 32:
+		#and is within 64 units from the portal
+		if $Player.position.distance_to(position) < 64: side += 180 #Then flip the portal direction
+		
+	"""if player_is_within_unit(position):
+		#Then flip the portal
+		pass"""
 	
 	var tile_map = get_node('TileMap')
 	
@@ -73,7 +110,7 @@ func _on_PortalBullet_make_portal(position, type, side):
 		for portal in portals[type]:
 			portal.queue_free()
 		portals[type] = null
-		_on_PortalBullet_make_portal(position, type, side)
+		_on_PortalBullet_make_portal(position, type, preserved)
 
 func _on_Portal_teleport_player(portal, type, player):
 	if not can_teleport: return

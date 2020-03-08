@@ -35,13 +35,15 @@ func _on_PortalBullet_body_entered(body):
 	var spawn_pos = tile_pos + Vector2(16,16)
 	position = Vector2(int(position.x), int(position.y))
 	
-	var side = 0
+	var side
 	if adjecent_tile(true, body, tile) and adjecent_tile(false, body, tile):
+		#If you can make portals both vertically and horizontally, don't make portal?
 		queue_free()
 		return
 	elif adjecent_tile(true, body, tile): # Vertically adjecent
+		#If the bullet is more left than the potential portal, then portal faces left
 		if position.x < spawn_pos.x: side = 180
-		#else: side = 0
+		else: side = 0 #Otherwise portal faces right
 	elif adjecent_tile(false, body, tile): # Horizontally adjecent
 		if position.y < spawn_pos.y: side = -90
 		else: side = 90

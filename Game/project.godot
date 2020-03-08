@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Portal2D"
-run/main_scene="res://World0.tscn"
+run/main_scene="res://Worlds/World0.tscn"
 config/icon="res://icon.png"
 config/gravity=false
 

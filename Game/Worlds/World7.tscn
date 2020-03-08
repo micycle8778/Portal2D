@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Empty_World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Killzone.tscn" type="PackedScene" id=2]
+
+[node name="World" instance=ExtResource( 1 )]
+camera_offset = Vector2( 0, 200 )
+camera_zoom = Vector2( 1.25, 1.25 )
+
+[node name="Player" parent="." index="0"]
+position = Vector2( 1760, 256 )
+GRAVITY = 7
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 5439528, 0, 0, 5439529, 0, 0, 5439530, 0, 0, 5439531, 0, 0, 5439532, 0, 0, 5439533, 0, 0, 5439534, 0, 0, 5439535, 0, 0, 5439536, 0, 0, 5439537, 0, 0, 5439538, 0, 0, 5439539, 0, 0, 5439540, 0, 0, 5439541, 0, 0, 5439542, 0, 0, 5439543, 0, 0, 5439544, 0, 0, 5439545, 0, 0, 5439546, 0, 0, 5439547, 0, 0, 5439548, 0, 0, 5439549, 0, 0, 5439550, 0, 0, 5439551, 0, 0, 5439552, 0, 0, 5439553, 0, 0, 5439554, 0, 0, 5439555, 0, 0, 5439556, 0, 0, 5439557, 0, 0, 5439558, 0, 0, 5439559, 0, 0 )
+
+[node name="Goal" parent="." index="2"]
+position = Vector2( 1504, 2592 )
+exit_scene = "res://Worlds/World8.tscn"
+
+[node name="Killzone" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 1664, 1056 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone2" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 1408, 1344 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone3" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 1664, 1568 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone4" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 1984, 1344 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone5" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 1376, 1888 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone8" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 1600, 2208 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone11" parent="." index="10" instance=ExtResource( 2 )]
+position = Vector2( 1888, 2528 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone12" parent="." index="11" instance=ExtResource( 2 )]
+position = Vector2( 2048, 2112 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone13" parent="." index="12" instance=ExtResource( 2 )]
+position = Vector2( 1152, 992 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone14" parent="." index="13" instance=ExtResource( 2 )]
+position = Vector2( 2144, 960 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone15" parent="." index="14" instance=ExtResource( 2 )]
+position = Vector2( 2400, 192 )
+scale = Vector2( 1, 75 )
+sprite_visible = true
+
+[node name="Killzone17" parent="." index="15" instance=ExtResource( 2 )]
+position = Vector2( 1056, 192 )
+scale = Vector2( 1, 75 )
+sprite_visible = true
+
+[node name="Killzone16" parent="." index="16" instance=ExtResource( 2 )]
+position = Vector2( 1984, 1728 )
+scale = Vector2( 7, 1 )
+sprite_visible = true
+
+[node name="Killzone9" parent="." index="17" instance=ExtResource( 2 )]
+position = Vector2( -6240, 2912 )
+scale = Vector2( 500, 1 )
+sprite_visible = true
