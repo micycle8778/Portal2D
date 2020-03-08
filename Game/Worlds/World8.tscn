@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Killzone.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Enemied_World.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Core Scenes/Killzone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Core Scenes/Enemied_World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Core Scenes/Enemy.tscn" type="PackedScene" id=3]
+
 
 [node name="World" instance=ExtResource( 2 )]
 
