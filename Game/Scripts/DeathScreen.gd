@@ -13,4 +13,4 @@ func _on_Play_pressed():
 		var file = File.new()
 		file.open(save_file, File.READ)
 		var data = parse_json(file.get_as_text())
-		get_tree().change_scene('res://Worlds/World'+str(data['world_num'])+'.tscn')
+		get_tree().change_scene('res://Worlds/World'+str(data['last_world'])+'.tscn')

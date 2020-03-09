@@ -17,10 +17,13 @@ var motion = Vector2()
 var can_shoot = [true,true]
 
 func _ready():
+	$"LifeContainer/VBox/Margin/Center/Lifebar".max_value = health
+	$"LifeContainer/VBox/Margin/Center/Lifebar".value = health
 	get_parent().connect('hurt_player', self, '_on_hurt_player')
 
 func _on_hurt_player(dmg):
 	health -= dmg
+	$"LifeContainer/VBox/Margin/Center/Lifebar".value = health
 	if health <= 0: emit_signal('player_dead')
 
 func _input(event):

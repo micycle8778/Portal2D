@@ -13,7 +13,7 @@ export(Vector2) var camera_zoom = Vector2(1,1)
 var can_teleport = true
 var type = 'peaceful'
 
-var subsitute_data = {'world_num':-1}
+var subsitute_data = {'world_num':0,'last_world':0}
 
 const save_file = 'user://save.json'
 
@@ -26,8 +26,9 @@ func _ready():
 		var data = parse_json(file.get_as_text())
 		if typeof(data) != TYPE_DICTIONARY:
 			data = subsitute_data
-		if data['world_num'] < world_num:
-			file.store_string(to_json({'world_num':world_num}))
+		if data['world_num'] < world_num: data['world_num'] = world_num
+		data['last_world'] = world_num
+		file.store_string(to_json(data))
 		file.close()
 	else:
 		var file = File.new()
