@@ -8,7 +8,14 @@
 extents = Vector2( 16, 15 )
 
 [node name="Player" type="KinematicBody2D"]
+z_index = 1
 script = ExtResource( 1 )
+
+[node name="LifeContainer" parent="." instance=ExtResource( 3 )]
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -36,11 +43,5 @@ offset = Vector2( 10, 0 )
 position = Vector2( 10, 0 )
 
 [node name="ShootTimer1" type="Timer" parent="."]
-
-[node name="LifeContainer" parent="." instance=ExtResource( 3 )]
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
 [connection signal="timeout" from="ShootTimer0" to="." method="_on_ShootTimer0_timeout"]
 [connection signal="timeout" from="ShootTimer1" to="." method="_on_ShootTimer1_timeout"]
