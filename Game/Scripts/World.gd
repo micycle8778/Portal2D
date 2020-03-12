@@ -17,6 +17,14 @@ var subsitute_data = {'world_num':0,'last_world':0}
 
 const save_file = 'user://save.json'
 
+func _process(_delta):
+	$Container.position = $Player.global_position - Vector2(512,300)
+
+func _input(event):
+	if Input.is_action_just_pressed('pause'):
+		get_tree().paused = not get_tree().paused
+		$Container.visible = get_tree().paused
+
 func _ready():
 	#Save whatever level we're on
 	var world_num = int(filename[18])
@@ -123,3 +131,8 @@ func _on_Portal_teleport_player(portal, type, player):
 
 func _on_TeleportTimer_timeout():
 	can_teleport = true
+
+
+func _on_Pause_Menu_unpause():
+	get_tree().paused = not get_tree().paused
+	$Container.visible = get_tree().paused

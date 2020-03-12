@@ -4,7 +4,6 @@
 [ext_resource path="res://Core Scenes/Enemied_World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Core Scenes/Enemy.tscn" type="PackedScene" id=3]
 
-
 [node name="World" instance=ExtResource( 2 )]
 
 [node name="Player" parent="." index="0"]

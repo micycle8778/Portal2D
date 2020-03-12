@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
-margin_bottom = 300.0
+margin_bottom = 274.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -24,13 +24,6 @@ texture = ExtResource( 2 )
 visible = false
 position = Vector2( 0, 1 )
 shape = SubResource( 1 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-drag_margin_left = 0.8
-drag_margin_top = 0.8
-
-[node name="ShootTimer0" type="Timer" parent="."]
 
 [node name="Cannon" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
@@ -41,6 +34,13 @@ offset = Vector2( 10, 0 )
 
 [node name="FirePos" type="Position2D" parent="Cannon"]
 position = Vector2( 10, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+drag_margin_left = 0.8
+drag_margin_top = 0.8
+
+[node name="ShootTimer0" type="Timer" parent="."]
 
 [node name="ShootTimer1" type="Timer" parent="."]
 [connection signal="timeout" from="ShootTimer0" to="." method="_on_ShootTimer0_timeout"]

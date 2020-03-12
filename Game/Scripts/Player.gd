@@ -12,18 +12,22 @@ const type = 'player'
 export(float) var shoot_time = 1
 export(int) var health = 70
 export(int) var GRAVITY = 20
+export(bool) var lifebar_visible = true
 
 var motion = Vector2()
 var can_shoot = [true,true]
 
-func _ready():
-	$"LifeContainer/VBox/Margin/Center/Lifebar".max_value = health
-	$"LifeContainer/VBox/Margin/Center/Lifebar".value = health
+func _ready():	
+	if lifebar_visible:
+		$"LifeContainer/Lifebar".max_value = health
+		$"LifeContainer/Lifebar".value = health
+	else:
+		$LifeContainer.visible = false
 	get_parent().connect('hurt_player', self, '_on_hurt_player')
 
 func _on_hurt_player(dmg):
 	health -= dmg
-	$"LifeContainer/VBox/Margin/Center/Lifebar".value = health
+	$"LifeContainer/Lifebar".value = health
 	if health <= 0: emit_signal('player_dead')
 
 func _input(event):

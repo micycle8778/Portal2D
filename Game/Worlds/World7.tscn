@@ -3,8 +3,6 @@
 [ext_resource path="res://Core Scenes/Empty_World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Core Scenes/Killzone.tscn" type="PackedScene" id=2]
 
-
-
 [node name="World" instance=ExtResource( 1 )]
 camera_offset = Vector2( 0, 200 )
 camera_zoom = Vector2( 1.25, 1.25 )
@@ -12,13 +10,13 @@ camera_zoom = Vector2( 1.25, 1.25 )
 [node name="Player" parent="." index="0"]
 position = Vector2( 1760, 256 )
 GRAVITY = 7
+lifebar_visible = false
 
 [node name="TileMap" parent="." index="1"]
 tile_data = PoolIntArray( 5439528, 0, 0, 5439529, 0, 0, 5439530, 0, 0, 5439531, 0, 0, 5439532, 0, 0, 5439533, 0, 0, 5439534, 0, 0, 5439535, 0, 0, 5439536, 0, 0, 5439537, 0, 0, 5439538, 0, 0, 5439539, 0, 0, 5439540, 0, 0, 5439541, 0, 0, 5439542, 0, 0, 5439543, 0, 0, 5439544, 0, 0, 5439545, 0, 0, 5439546, 0, 0, 5439547, 0, 0, 5439548, 0, 0, 5439549, 0, 0, 5439550, 0, 0, 5439551, 0, 0, 5439552, 0, 0, 5439553, 0, 0, 5439554, 0, 0, 5439555, 0, 0, 5439556, 0, 0, 5439557, 0, 0, 5439558, 0, 0, 5439559, 0, 0 )
 
 [node name="Goal" parent="." index="2"]
 position = Vector2( 1504, 2592 )
-exit_scene = "res://Worlds/World8.tscn"
 
 [node name="Killzone" parent="." index="4" instance=ExtResource( 2 )]
 position = Vector2( 1664, 1056 )
