@@ -4,6 +4,8 @@ signal unpause
 
 func _on_Continue_pressed():
 	emit_signal("unpause")
+#	get_tree().paused = false
+#	get_parent().visible = false
 
 func _on_Level_Select_pressed():
 	get_tree().paused = false

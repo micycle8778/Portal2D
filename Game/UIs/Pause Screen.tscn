@@ -2,13 +2,16 @@
 
 [ext_resource path="res://Fonts/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Fonts/Button.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Shaders/blur.shader" type="Shader" id=3]
+[ext_resource path="res://Shaders/hybrid.shader" type="Shader" id=3]
 [ext_resource path="res://Scripts/Pause Screen.gd" type="Script" id=4]
 [ext_resource path="res://Images/white.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
-shader_param/amount = 3.0
+shader_param/amount = 3.5
+shader_param/frequency = 60.0
+shader_param/depth = 0.005
+shader_param/speed = 2.5
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -47,11 +50,11 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause Screen"]
-margin_right = 924.0
-margin_bottom = 530.0
+margin_right = 1820.0
+margin_bottom = 1010.0
 
 [node name="Label" type="Label" parent="Pause Screen/VBoxContainer"]
-margin_right = 924.0
+margin_right = 1820.0
 margin_bottom = 75.0
 custom_fonts/font = SubResource( 2 )
 text = "Paused"
@@ -60,39 +63,39 @@ valign = 1
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Pause Screen/VBoxContainer"]
 margin_top = 79.0
-margin_right = 924.0
-margin_bottom = 299.0
+margin_right = 1820.0
+margin_bottom = 722.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Continue" type="Button" parent="Pause Screen/VBoxContainer"]
-margin_top = 303.0
-margin_right = 924.0
-margin_bottom = 371.0
+margin_top = 726.0
+margin_right = 1820.0
+margin_bottom = 794.0
 custom_fonts/font = SubResource( 3 )
 text = "Continue"
 flat = true
 
 [node name="Level Select" type="Button" parent="Pause Screen/VBoxContainer"]
-margin_top = 375.0
-margin_right = 924.0
-margin_bottom = 424.0
+margin_top = 798.0
+margin_right = 1820.0
+margin_bottom = 866.0
 custom_fonts/font = ExtResource( 2 )
 text = "Level Select"
 flat = true
 
 [node name="Main Menu" type="Button" parent="Pause Screen/VBoxContainer"]
-margin_top = 428.0
-margin_right = 924.0
-margin_bottom = 477.0
+margin_top = 870.0
+margin_right = 1820.0
+margin_bottom = 938.0
 custom_fonts/font = ExtResource( 2 )
 text = "Main Menu"
 flat = true
 
 [node name="Quit" type="Button" parent="Pause Screen/VBoxContainer"]
-margin_top = 481.0
-margin_right = 924.0
-margin_bottom = 530.0
+margin_top = 942.0
+margin_right = 1820.0
+margin_bottom = 1010.0
 custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 flat = true

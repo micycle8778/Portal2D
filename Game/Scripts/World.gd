@@ -1,6 +1,11 @@
 extends Node2D
 
 const offset = Vector2(32,0)
+onready var aspect_zoom = camera_zoom * Vector2(1024 / get_viewport().size.x, 600 / get_viewport().size.y)
+onready var zooms = {
+	false: aspect_zoom,
+	true: Vector2(1,1)
+}
 
 export(PackedScene) var Bullet
 export(PackedScene) var Portal
@@ -17,16 +22,23 @@ var subsitute_data = {'world_num':0,'last_world':0}
 
 const save_file = 'user://save.json'
 
+func pause():
+	get_tree().paused = not get_tree().paused
+	$Container.visible = get_tree().paused
+	$Player/Camera2D.zoom = zooms[get_tree().paused]
+
 func _process(_delta):
-	$Container.position = $Player.global_position - Vector2(512,300)
+	$Container.position = $Player.global_position - (get_viewport().size / 2)
 
 func _input(event):
 	if Input.is_action_just_pressed('pause'):
-		get_tree().paused = not get_tree().paused
-		$Container.visible = get_tree().paused
+		pause()
 
 func _ready():
 	#Save whatever level we're on
+	$"Container/Pause Menu".rect_size = get_viewport().size
+	
+	print(Portal.get_class())
 	var world_num = int(filename[18])
 	if File.new().file_exists(save_file):
 		var file = File.new()
@@ -46,7 +58,7 @@ func _ready():
 	
 	#Set the camera settings
 	$'Player/Camera2D'.offset = camera_offset
-	$'Player/Camera2D'.zoom = camera_zoom
+	$'Player/Camera2D'.zoom = aspect_zoom
 	
 	#Connect a signal will all of the killzones
 	for node in get_children():
@@ -134,5 +146,4 @@ func _on_TeleportTimer_timeout():
 
 
 func _on_Pause_Menu_unpause():
-	get_tree().paused = not get_tree().paused
-	$Container.visible = get_tree().paused
+	pause()
