@@ -6,6 +6,8 @@ var button = preload("res://UIs/Level Button.tscn")
 const save_file = 'user://save.json'
 
 func _ready():
+	PlayerVars.reset()
+	
 	var dir = Directory.new()
 	dir.open('res://Worlds/')
 	dir.list_dir_begin(true)

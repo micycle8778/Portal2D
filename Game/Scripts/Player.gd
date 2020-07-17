@@ -10,7 +10,6 @@ const JUMP_HEIGHT = 450
 const type = 'player'
 
 export(float) var shoot_time = 1
-export(int) var health = 70
 export(int) var GRAVITY = 20
 export(bool) var lifebar_visible = true
 
@@ -19,16 +18,16 @@ var can_shoot = [true,true]
 
 func _ready():	
 	if lifebar_visible:
-		$"LifeContainer/Lifebar".max_value = health
-		$"LifeContainer/Lifebar".value = health
+		$"LifeContainer/Lifebar".max_value = PlayerVars.max_health
+		$"LifeContainer/Lifebar".value = PlayerVars.health
 	else:
 		$LifeContainer.visible = false
 	get_parent().connect('hurt_player', self, '_on_hurt_player')
 
 func _on_hurt_player(dmg):
-	health -= dmg
-	$"LifeContainer/Lifebar".value = health
-	if health <= 0: emit_signal('player_dead')
+	PlayerVars.health -= dmg
+	$"LifeContainer/Lifebar".value = PlayerVars.health
+	if PlayerVars.health <= 0: emit_signal('player_dead')
 
 func _input(event):
 	if Input.is_action_just_pressed('fire0') and can_shoot[0]:

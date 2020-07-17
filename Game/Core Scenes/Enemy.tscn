@@ -4,7 +4,7 @@
 [ext_resource path="res://Images/white.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 15.4991, 32.0385 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -32,9 +32,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.322166, 0.0735817 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -44,6 +43,7 @@ visible = false
 position = Vector2( -37, -3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
+visible = false
 position = Vector2( -1000, 0 )
 scale = Vector2( 1, 0.05 )
 shape = SubResource( 2 )

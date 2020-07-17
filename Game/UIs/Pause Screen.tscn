@@ -72,7 +72,9 @@ size_flags_vertical = 3
 margin_top = 726.0
 margin_right = 1820.0
 margin_bottom = 794.0
+focus_mode = 0
 custom_fonts/font = SubResource( 3 )
+enabled_focus_mode = 0
 text = "Continue"
 flat = true
 
@@ -80,7 +82,9 @@ flat = true
 margin_top = 798.0
 margin_right = 1820.0
 margin_bottom = 866.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
 text = "Level Select"
 flat = true
 
@@ -88,7 +92,9 @@ flat = true
 margin_top = 870.0
 margin_right = 1820.0
 margin_bottom = 938.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
 text = "Main Menu"
 flat = true
 
@@ -96,7 +102,9 @@ flat = true
 margin_top = 942.0
 margin_right = 1820.0
 margin_bottom = 1010.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
 text = "Quit"
 flat = true
 [connection signal="pressed" from="Pause Screen/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-const offset = Vector2(32,0)
+const offset = Vector2(32,0) #Size of the TileMap
 onready var aspect_zoom = camera_zoom * Vector2(1024 / get_viewport().size.x, 600 / get_viewport().size.y)
 onready var zooms = {
 	false: aspect_zoom,
@@ -24,6 +24,7 @@ const save_file = 'user://save.json'
 
 func pause():
 	get_tree().paused = not get_tree().paused
+	#print("Paused!" if get_tree().paused else "Unpaused!")
 	$Container.visible = get_tree().paused
 	$Player/Camera2D.zoom = zooms[get_tree().paused]
 
@@ -38,8 +39,10 @@ func _ready():
 	#Save whatever level we're on
 	$"Container/Pause Menu".rect_size = get_viewport().size
 	
-	print(Portal.get_class())
 	var world_num = int(filename[18])
+	
+	PlayerVars.last_world = world_num
+	
 	if File.new().file_exists(save_file):
 		var file = File.new()
 		file.open(save_file, File.READ_WRITE)
@@ -47,7 +50,6 @@ func _ready():
 		if typeof(data) != TYPE_DICTIONARY:
 			data = subsitute_data
 		if data['world_num'] < world_num: data['world_num'] = world_num
-		data['last_world'] = world_num
 		file.store_string(to_json(data))
 		file.close()
 	else:
@@ -64,6 +66,8 @@ func _ready():
 	for node in get_children():
 		if node.get_class() == 'Area2D' and node.type == 'killzone':
 			node.connect('kill_player', self, 'restart')
+	
+	$"Container/Pause Menu".connect("unpause", self, "_on_Pause_Menu_unpause")
 
 func restart():
 	get_tree().change_scene('res://UIs/DeathScreen.tscn')
@@ -86,7 +90,6 @@ var colors = [
 ]
 
 var portals = [null, null]
-
 func _on_Player_shoot(direction, exit_position, type):
 	var bullet = Bullet.instance()
 	bullet.position = exit_position
@@ -136,9 +139,15 @@ func _on_Portal_teleport_player(portal, type, player):
 	var portal_index = portals[type].find(portal)
 	if des_portals == null: return
 	portal = des_portals[portal_index]
-	player.position = portal.position + offset.rotated(portal.rotation)
-	can_teleport = false
-	$TeleportTimer.start(teleport_delay)
+	
+	print(offset.rotated(portal.rotation))
+	
+	if player.type == 'player':
+		player.position = portal.position + offset.rotated(portal.rotation)
+		can_teleport = false
+		$TeleportTimer.start(teleport_delay)
+	elif player.type == 'enemy':
+		player.position = portal.position + (offset*2).rotated(portal.rotation)
 
 
 func _on_TeleportTimer_timeout():
