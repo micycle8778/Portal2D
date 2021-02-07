@@ -15,7 +15,6 @@ export(float) var teleport_delay = .5
 export(Vector2) var camera_offset
 export(Vector2) var camera_zoom = Vector2(1,1)
 
-var can_teleport = true
 var type = 'peaceful'
 
 var subsitute_data = {'world_num':0,'last_world':0}
@@ -24,7 +23,6 @@ const save_file = 'user://save.json'
 
 func pause():
 	get_tree().paused = not get_tree().paused
-	#print("Paused!" if get_tree().paused else "Unpaused!")
 	$Container.visible = get_tree().paused
 	$Player/Camera2D.zoom = zooms[get_tree().paused]
 
@@ -132,27 +130,24 @@ func _on_PortalBullet_make_portal(position, type, side):
 		portals[type] = null
 		_on_PortalBullet_make_portal(position, type, preserved)
 
-func _on_Portal_teleport_player(portal, type, player):
-	if not can_teleport: return
+func _on_Portal_teleport_player(portal, type, body):
+	body.call_track += 1
+	
+	if body.portal_des != 2: return # Can we teleport?
+	
 	var des_type = int(not bool(type))
 	var des_portals = portals[des_type]
 	var portal_index = portals[type].find(portal)
 	if des_portals == null: return
 	portal = des_portals[portal_index]
 	
-	print(offset.rotated(portal.rotation))
+	body.portal_des = des_type
 	
-	if player.type == 'player':
-		player.position = portal.position + offset.rotated(portal.rotation)
-		can_teleport = false
-		$TeleportTimer.start(teleport_delay)
-	elif player.type == 'enemy':
-		player.position = portal.position + (offset*2).rotated(portal.rotation)
-
-
-func _on_TeleportTimer_timeout():
-	can_teleport = true
-
+	if body.type == 'player':
+		body.position = portal.position + offset.rotated(portal.rotation)
+	elif body.type == 'enemy':
+		body.position = portal.position + (offset*2).rotated(portal.rotation)
+		body.linear_velocity.y = 300
 
 func _on_Pause_Menu_unpause():
 	pause()

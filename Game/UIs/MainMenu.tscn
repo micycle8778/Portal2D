@@ -113,7 +113,7 @@ margin_top = 482.0
 margin_right = 411.0
 margin_bottom = 501.0
 custom_fonts/font = SubResource( 3 )
-text = "Portal2D v0.6.1 (Wed, July 15, 2020)"
+text = "Portal2D v0.6.2 (Sun, Feb 07, 2021)"
 align = 1
 valign = 1
 

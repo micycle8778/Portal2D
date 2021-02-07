@@ -40,5 +40,4 @@ func _on_Level_Button_pressed_wrapper(id):
 
 
 func _on_Button_pressed():
-	print("menu")
 	get_tree().change_scene("res://UIs/MainMenu.tscn")

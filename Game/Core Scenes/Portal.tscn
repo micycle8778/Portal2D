@@ -27,3 +27,4 @@ position = Vector2( -16, -16 )
 texture = ExtResource( 2 )
 centered = false
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

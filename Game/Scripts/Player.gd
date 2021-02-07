@@ -13,6 +13,8 @@ export(float) var shoot_time = 1
 export(int) var GRAVITY = 20
 export(bool) var lifebar_visible = true
 
+var portal_des = 2
+var call_track = 0
 var motion = Vector2()
 var can_shoot = [true,true]
 

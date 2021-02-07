@@ -7,6 +7,8 @@ const type = 'enemy'
 
 var can_aim = true
 var can_shoot = true
+var portal_des = 2
+var call_track = 0
 
 func _ready():
 	get_parent().connect('enemy_detected', self, '_on_enemy_detected')
